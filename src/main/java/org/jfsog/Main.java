@@ -10,10 +10,20 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
+        var espaco = "-".repeat(75);
         Tecnica1();
+        System.out.println();
         Tecnica2(1500);
+        System.out.println(espaco);
         Tecnica2(1597);
+        System.out.println(espaco);
         Tecnica3();
+        System.out.println(espaco);
+        Tecnica4();
+        System.out.println(espaco);
+        Tecnica5();
+        System.out.println(espaco);
+        Tecnica5("Outra string para inverter");
     }
     private static void Tecnica1() {
         int INDICE = 13, SOMA = 0, K = 0;
@@ -65,4 +75,34 @@ public class Main {
             throw new RuntimeException(e);
         }
     }
+    private static void Tecnica4() {
+        List<Faturamento> faturamentos = List.of(new Faturamento("SP", 67836.43),
+                new Faturamento("RJ", 36678.66),
+                new Faturamento("MG", 29229.88),
+                new Faturamento("ES", 27165.48),
+                new Faturamento("Outros", 19849.53));
+        faturamentos.forEach(System.out::println);
+        var total = faturamentos.stream().mapToDouble(Faturamento::faturamento).sum();
+        System.out.println("Valor total: " + total);
+        faturamentos.forEach(f -> System.out.printf("Estado: %s, Percentual relativo: %.2f%%%n",
+                f.estado(),
+                f.faturamento() / total));
+    }
+    private static void Tecnica5() {
+        Tecnica5("Teste de string para reverter");
+    }
+    private static void Tecnica5(String string) {
+        var codePoints = string.codePoints().toArray();
+        for (int init = 0, end = codePoints.length - 1; init < end; init++, end--) {
+            var t = codePoints[init];
+            codePoints[init] = codePoints[end];
+            codePoints[end] = t;
+        }
+        var stringFinal = new String(codePoints, 0, codePoints.length);
+        System.out.println("string normal   :   " + string);
+        System.out.println("string invertida:   " + stringFinal);
+        assert stringFinal.contentEquals(new StringBuilder(string).reverse());
+    }
 }
+
+record Faturamento(String estado, double faturamento) {}
