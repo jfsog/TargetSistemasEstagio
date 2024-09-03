@@ -1,18 +1,28 @@
 package org.jfsog;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
         var espaco = "-".repeat(75);
         Tecnica1();
-        System.out.println();
+        System.out.println(espaco);
         Tecnica2(1500);
         System.out.println(espaco);
         Tecnica2(1597);
@@ -31,7 +41,7 @@ public class Main {
             K++;
             SOMA += K;
         }
-        System.out.println("SOMA = " + SOMA); // 91
+        System.out.printf("SOMA = %d%n", SOMA); // 91
     }
     private static void Tecnica2(long numero) {
         long f1 = 0, f2 = 1;
@@ -41,8 +51,6 @@ public class Main {
             System.out.printf("O número %s pertence a sequência de Fibonacci%n", numero);
         } else {
             long temp;
-            System.out.println("0,");
-            System.out.println("1,");
             while (f2 < numero) {
                 temp = f1;
                 f1 = f2;
@@ -56,21 +64,27 @@ public class Main {
         }
     }
     private static void Tecnica3() {
-        try (var input = com.sun.tools.javac.Main.class.getClassLoader().getResourceAsStream("faturamento.json")) {
-            var obj = new ObjectMapper();
-            var root = obj.readTree(input);
-            List<Double> valores = new ArrayList<>();
-            for (JsonNode node : root.get("dias")) {
-                var val = node.get("valor").asDouble();
-                if (val > 0.0) valores.add(val);
-            }
-            var sumario = valores.stream().collect(Collectors.summarizingDouble(Double::doubleValue));
-            var maioresQueAMedia = valores.stream().filter(v -> v > sumario.getAverage()).count();
-            System.out.printf("O menor valor de faturamento ocorrido em um dia do mês foi de %f%n", sumario.getMin());
-            System.out.printf("O maior valor de faturamento ocorrido em um dia do mês foi de %f%n", sumario.getMax());
-            System.out.printf(
-                    "Número de dias no mês em que o valor de faturamento diário foi superior à média mensal: %d",
-                    maioresQueAMedia);
+        Gson gson = new Gson();
+        var classLoader = Main.class.getClassLoader();
+        var dadosJsonUrl = classLoader.getResource("dados.json");
+        var jsonFileName = Optional.ofNullable(dadosJsonUrl).map(URL::getPath).orElse("");
+        System.out.println("Lidos a partir do json:");
+        try (var reader = new FileReader(jsonFileName)) {
+            Type fluxoDeCaixa = new TypeToken<ArrayList<CaixaDiario>>() {}.getType();
+            List<CaixaDiario> floxoJson = gson.fromJson(reader, fluxoDeCaixa);
+            PrintFluxoTecnica3(floxoJson);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        XmlMapper mapper = new XmlMapper();
+        var DadosXmlUrl = classLoader.getResource("dados.xml");
+        var xmlFileName = Optional.ofNullable(DadosXmlUrl).map(URL::getPath).orElse("");
+        System.out.println("Lidos a partir do xml:");
+        try {
+            File xmlFile = new File(xmlFileName);
+            List<CaixaDiario> fluxoXml = mapper.readValue(xmlFile,
+                    mapper.getTypeFactory().constructCollectionType(List.class, CaixaDiario.class));
+            PrintFluxoTecnica3(fluxoXml);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -103,6 +117,27 @@ public class Main {
         System.out.println("string invertida:   " + stringFinal);
         assert stringFinal.contentEquals(new StringBuilder(string).reverse());
     }
+    private static void PrintFluxoTecnica3(List<CaixaDiario> fluxoDeCaixa) {
+        var sumario = fluxoDeCaixa.stream()
+                                  .map(CaixaDiario::getValor)
+                                  .filter(v -> v > 0.0)
+                                  .collect(Collectors.summarizingDouble(Double::doubleValue));
+        var maioresQueAMedia = fluxoDeCaixa.stream().filter(v -> v.getValor() > sumario.getAverage()).count();
+        System.out.printf("O menor valor de faturamento ocorrido em um dia do mês foi de %f%n", sumario.getMin());
+        System.out.printf("O maior valor de faturamento ocorrido em um dia do mês foi de %f%n", sumario.getMax());
+        System.out.printf("Média mensal de faturamento :%f%n", sumario.getAverage());
+        System.out.printf("Dias com faturamento diário superior à média mensal: %d%n", maioresQueAMedia);
+    }
 }
 
 record Faturamento(String estado, double faturamento) {}
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+class CaixaDiario {
+    @JacksonXmlProperty(localName = "dia")
+    private int dia;
+    @JacksonXmlProperty(localName = "valor")
+    private double valor;
+}
