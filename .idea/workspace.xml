@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e16c2bf7-f848-412b-b688-5d10b198318d" name="Changes" comment="Desafio atualizado">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="e16c2bf7-f848-412b-b688-5d10b198318d" name="Changes" comment="Resolução para estágio em ribeirão preto atualizada.">
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jfsog/Estagio_RibeiraoPreto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jfsog/Estagio_RibeiraoPreto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +35,9 @@
     &quot;accountId&quot;: &quot;f2b32170-037b-40ba-9e4b-e56daca51bd9&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -101,7 +102,7 @@
       <workItem from="1725233761611" duration="13788000" />
       <workItem from="1725395890938" duration="4033000" />
       <workItem from="1725399930703" duration="761000" />
-      <workItem from="1725400696915" duration="3915000" />
+      <workItem from="1725400696915" duration="5733000" />
     </task>
     <task id="LOCAL-00001" summary="Primeiro Commit">
       <option name="closed" value="true" />
@@ -159,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725401864221</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Resolução para estágio em ribeirão preto atualizada.">
+      <option name="closed" value="true" />
+      <created>1725405780321</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1725405780321</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +190,7 @@
     <MESSAGE value="Desafio finalizado" />
     <MESSAGE value="Desafio Preparado para lidar com xml e json" />
     <MESSAGE value="Desafio atualizado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Desafio atualizado" />
+    <MESSAGE value="Resolução para estágio em ribeirão preto atualizada." />
+    <option name="LAST_COMMIT_MESSAGE" value="Resolução para estágio em ribeirão preto atualizada." />
   </component>
 </project>
