@@ -12,7 +12,7 @@ public class Estagio_RibeiraoPreto {
         System.out.println(str);
         Tecnica1(BigInteger.valueOf(144));
         System.out.println(str);
-        Tecnica1(BigInteger.valueOf(133));
+        Tecnica1(BigInteger.valueOf(89));
         Tecnica2("Teste da nossa string que conta a quantidade de A");
         System.out.println(str);
         Tecnica2("Teste da nossa string que conta A quantidade de A");
@@ -24,21 +24,18 @@ public class Estagio_RibeiraoPreto {
         Tecnica5();
     }
     private static void Tecnica1(BigInteger numero) {
-        if (numero.compareTo(BigInteger.ZERO) < 0) {
-            System.out.printf("O número %s não pertence a sequência de Fibonacci%n", numero);
-        } else if (numero.compareTo(BigInteger.ZERO) == 0) {
-            System.out.printf("O número %s pertence a sequência de Fibonacci%n", numero);
-        } else {
-            boolean isFib = Stream.iterate(Tuple.of(BigInteger.ZERO, BigInteger.ONE),
-                                          f -> Tuple.of(f._2, f._1.add(f._2)))
+        boolean isFib = switch (numero.compareTo(BigInteger.ZERO)) {
+            case -1 -> false;
+            case 0 -> true;
+            default -> Stream.iterate(Tuple.of(BigInteger.ZERO, BigInteger.ONE), f -> Tuple.of(f._2, f._1.add(f._2)))
 //                                  .peek(System.out::println)
-                                  .dropWhile(fac -> fac._2().compareTo(numero) < 0)
-                                  .findFirst()
-                                  .map(f -> f._2)
-                                  .map(bi -> bi.compareTo(numero) == 0)
-                                  .orElse(false);
-            System.out.printf("O número %s %s a sequência de Fibonacci%n", numero, isFib ? "pertence" : "não pertence");
-        }
+                             .dropWhile(fac -> fac._2().compareTo(numero) < 0)
+                             .findFirst()
+                             .map(f -> f._2)
+                             .map(bi -> bi.compareTo(numero) == 0)
+                             .orElse(false);
+        };
+        System.out.printf("O número %s %s a sequência de Fibonacci%n", numero, isFib ? "pertence" : "não pertence");
     }
     private static void Tecnica2(String string) {
         var count = string.codePoints().filter(c -> c == 'a' || c == 'A').count();

@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e16c2bf7-f848-412b-b688-5d10b198318d" name="Changes" comment="Resolução para estágio em ribeirão preto atualizada.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jfsog/Estagio_RibeiraoPreto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jfsog/Estagio_RibeiraoPreto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +37,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -102,7 +103,7 @@
       <workItem from="1725233761611" duration="13788000" />
       <workItem from="1725395890938" duration="4033000" />
       <workItem from="1725399930703" duration="761000" />
-      <workItem from="1725400696915" duration="5733000" />
+      <workItem from="1725400696915" duration="7190000" />
     </task>
     <task id="LOCAL-00001" summary="Primeiro Commit">
       <option name="closed" value="true" />
@@ -168,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725405780321</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Resolução para estágio em ribeirão preto atualizada.">
+      <option name="closed" value="true" />
+      <created>1725406729995</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1725406729995</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
