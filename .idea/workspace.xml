@@ -69,7 +69,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="org.jfsog.Main" />
+      <option name="MAIN_CLASS_NAME" value="org.jfsog.Estagio_SP" />
       <module name="TargetSistemasEstagio" />
       <method v="2">
         <option name="Make" enabled="true" />

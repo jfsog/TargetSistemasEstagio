@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Main {
+public class Estagio_SP {
     public static void main(String[] args) {
         var espaco = "-".repeat(75);
         Tecnica1();
@@ -65,7 +65,7 @@ public class Main {
     }
     private static void Tecnica3() {
         Gson gson = new Gson();
-        var classLoader = Main.class.getClassLoader();
+        var classLoader = Estagio_SP.class.getClassLoader();
         var dadosJsonUrl = classLoader.getResource("dados.json");
         var jsonFileName = Optional.ofNullable(dadosJsonUrl).map(URL::getPath).orElse("");
         System.out.println("Lidos a partir do json:");
