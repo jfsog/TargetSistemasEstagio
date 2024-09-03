@@ -24,16 +24,15 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.17.1</version>
         </dependency>
-        <!--https://github.com/FasterXML/jackson-dataformat-xml -->
-        <dependency>
-            <groupId>com.fasterxml.woodstox</groupId>
-            <artifactId>woodstox-core</artifactId>
-            <version>6.5.0</version>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.34</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>1.0.0-alpha-4</version>
         </dependency>
     </dependencies>
     <repositories>

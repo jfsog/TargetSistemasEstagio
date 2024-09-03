@@ -1,7 +1,60 @@
 package org.jfsog;
 
+import io.vavr.Tuple;
+
+import java.math.BigInteger;
+import java.util.stream.Stream;
+
 public class Estagio_RibeiraoPreto {
     public static void main(String[] args) {
+        Tecnica1(BigInteger.valueOf(133));
+        Tecnica2("Teste da nossa string que conta a quantidade de A");
+        Tecnica2("Teste da nossa string que conta A quantidade de A");
+        Tecnica3();
+        Tecnica4();
+    }
+    private static void Tecnica1(BigInteger numero) {
+        if (numero.compareTo(BigInteger.ZERO) < 0) {
+            System.out.printf("O número %s não pertence a sequência de Fibonacci%n", numero);
+        } else if (numero.compareTo(BigInteger.ZERO) == 0) {
+            System.out.printf("O número %s pertence a sequência de Fibonacci%n", numero);
+        } else {
+            boolean isFib = Stream.iterate(Tuple.of(BigInteger.ZERO, BigInteger.ONE),
+                                          f -> Tuple.of(f._2, f._1.add(f._2)))
+//                                  .peek(System.out::println)
+                                  .dropWhile(fac -> fac._2().compareTo(numero) < 0)
+                                  .findFirst()
+                                  .map(f -> f._2)
+                                  .map(bi -> bi.compareTo(numero) == 0)
+                                  .orElse(false);
+            System.out.printf("O número %s %s a sequência de Fibonacci%n", numero, isFib ? "pertence" : "não pertence");
+        }
+    }
+    private static void Tecnica2(String string) {
+        var count = string.codePoints().filter(c -> c == 'a' || c == 'A').count();
+        System.out.printf("O número de vezes que a|A aparece em %s é igual a %d%n", string, count);
+    }
+    private static void Tecnica3() {
+        int INDICE = 12, SOMA = 0, K = 1;
+        while (K < INDICE) {
+            K = K + 1;
+            SOMA = SOMA + K;
+        }
+        System.out.printf("Soma = %d%n", SOMA); //77
+    }
+    private static void Tecnica4() {
+        // a) 1, 3, 5, 7, ___
+        System.out.println("O Próximo na sequência: 1, 3, 5, 7,___ é 9, pois a sequência segue um incremento de 2");
+        // b) 2, 4, 8, 16, 32, 64, ____
+        System.out.println("O Próximo na sequência: 2, 4, 8, 16, 32, 64, ____ é 128, pois a sequência segue a potências de 2");
+        // c) 0, 1, 4, 9, 16, 25, 36, ____
+        System.out.println("O Próximo na sequência:  0, 1, 4, 9, 16, 25, 36, ____é 49, pois a sequência segue incrementos que por si só incrementam em 2 a partir de 1");
+        // d) 4, 16, 36, 64, ____
+        System.out.println("O Próximo na sequência: 4, 16, 36, 64, ____é 100, pois a sequência segue incrementos que por si só incrementam em 8 com valor inicial de 12 ");
+        // e) 1, 1, 2, 3, 5, 8, ____
+        System.out.println("O Próximo na sequência: 1, 1, 2, 3, 5, 8, ____ é 13, pois a sequência segue conforme a soma dos 2 antecessores, essa é a sequência de fibonnaci");
+        // f) 2,10, 12, 16, 17, 18, 19, ____
+        System.out.println("O Próximo na sequência: 2,10, 12, 16, 17, 18, 19, ____ parece ser 200, não achei lógica de numerica, mas é o próximo que começa com a letra \"D\"");
     }
 }
 //TODO
