@@ -39,7 +39,7 @@ public class Estagio_RibeiraoPreto {
     }
     private static void Tecnica2(String string) {
         var count = string.codePoints().filter(c -> c == 'a' || c == 'A').count();
-        System.out.printf("O número de vezes que a|A aparece em %s é igual a %d%n", string, count);
+        System.out.printf("O número de vezes que a|A aparece em '%s' é igual a %d%n", string, count);
     }
     private static void Tecnica3() {
         int INDICE = 12, SOMA = 0, K = 1;
